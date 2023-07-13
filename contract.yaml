@@ -7,6 +7,11 @@ paths:
     get:
       tags:
         - Products
+      parameters:
+        - name: SearchPattern
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
