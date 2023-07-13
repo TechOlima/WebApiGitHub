@@ -1,0 +1,396 @@
+openapi: 3.0.1
+info:
+  title: WebApi
+  version: '1.0'
+paths:
+  /api/Products:
+    get:
+      tags:
+        - Products
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductGet'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductGet'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductGet'
+components:
+  schemas:
+    GenderType:
+      type: object
+      properties:
+        genderTypeID:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Insert:
+      type: object
+      properties:
+        insertID:
+          type: integer
+          format: int32
+        weight:
+          type: number
+          format: double
+          nullable: true
+        stoneType:
+          $ref: '#/components/schemas/StoneType'
+        product:
+          $ref: '#/components/schemas/Product'
+      additionalProperties: false
+    InsertPut:
+      type: object
+      properties:
+        weight:
+          type: number
+          format: double
+          nullable: true
+        stoneType:
+          type: string
+          nullable: true
+        productID:
+          type: integer
+          format: int32
+          nullable: true
+        insertID:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    MaterialType:
+      type: object
+      properties:
+        materialTypeID:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        fineness:
+          type: integer
+          format: int32
+      additionalProperties: false
+    Order:
+      type: object
+      properties:
+        orderID:
+          type: integer
+          format: int32
+        clientName:
+          type: string
+          nullable: true
+        clientPhone:
+          type: string
+          nullable: true
+        clientEmail:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/State'
+        deliveryAddress:
+          type: string
+          nullable: true
+        deliveryDate:
+          type: string
+          format: date-time
+          nullable: true
+        orderDate:
+          type: string
+          format: date-time
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        storages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Storage'
+          nullable: true
+        deliveryAddressStd:
+          type: string
+          nullable: true
+        streetWithType:
+          type: string
+          nullable: true
+        house:
+          type: string
+          nullable: true
+        block:
+          type: string
+          nullable: true
+        entrance:
+          type: string
+          nullable: true
+        floor:
+          type: string
+          nullable: true
+        flat:
+          type: string
+          nullable: true
+        qc:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Photo:
+      type: object
+      properties:
+        photoID:
+          type: integer
+          format: int32
+        is_Cover:
+          type: boolean
+          nullable: true
+        productID:
+          type: integer
+          format: int32
+        photoUrl:
+          type: string
+          nullable: true
+        vK_ID:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Product:
+      type: object
+      properties:
+        productID:
+          type: integer
+          format: int32
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        materialType:
+          $ref: '#/components/schemas/MaterialType'
+        name:
+          type: string
+          nullable: true
+        equipment:
+          type: string
+          nullable: true
+        vendorCode:
+          type: string
+          nullable: true
+        size:
+          type: integer
+          format: int32
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        genderType:
+          $ref: '#/components/schemas/GenderType'
+        is_Deleted:
+          type: boolean
+          nullable: true
+        vK_ID:
+          type: integer
+          format: int32
+          nullable: true
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+          nullable: true
+        inserts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Insert'
+          nullable: true
+        storages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Storage'
+          nullable: true
+      additionalProperties: false
+    ProductGet:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        productType:
+          type: string
+          nullable: true
+        materialType:
+          type: string
+          nullable: true
+        equipment:
+          type: string
+          nullable: true
+        vendorCode:
+          type: string
+          nullable: true
+        size:
+          type: integer
+          format: int32
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        genderType:
+          type: string
+          nullable: true
+        is_Deleted:
+          type: boolean
+          nullable: true
+        vK_ID:
+          type: integer
+          format: int32
+          nullable: true
+        productID:
+          type: integer
+          format: int32
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Photo'
+          nullable: true
+        inserts:
+          type: array
+          items:
+            $ref: '#/components/schemas/InsertPut'
+          nullable: true
+        storageCount:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ProductPost:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        productType:
+          type: string
+          nullable: true
+        materialType:
+          type: string
+          nullable: true
+        equipment:
+          type: string
+          nullable: true
+        vendorCode:
+          type: string
+          nullable: true
+        size:
+          type: integer
+          format: int32
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        genderType:
+          type: string
+          nullable: true
+        is_Deleted:
+          type: boolean
+          nullable: true
+        vK_ID:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ProductType:
+      type: object
+      properties:
+        productTypeID:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    State:
+      type: object
+      properties:
+        stateID:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StoneType:
+      type: object
+      properties:
+        stoneTypeID:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Storage:
+      type: object
+      properties:
+        storageID:
+          type: integer
+          format: int32
+        purchasePrice:
+          type: number
+          format: double
+          nullable: true
+        salePrice:
+          type: number
+          format: double
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+        productID:
+          type: integer
+          format: int32
+        order:
+          $ref: '#/components/schemas/Order'
+        orderID:
+          type: integer
+          format: int32
+          nullable: true
+        supply:
+          $ref: '#/components/schemas/Supply'
+        supplyID:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    Supply:
+      type: object
+      properties:
+        supplyID:
+          type: integer
+          format: int32
+        shippingDate:
+          type: string
+          format: date-time
+          nullable: true
+        receivingDate:
+          type: string
+          format: date-time
+          nullable: true
+        isReceived:
+          type: boolean
+          nullable: true
+        note:
+          type: string
+          nullable: true
+        storages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Storage'
+          nullable: true
+      additionalProperties: false
