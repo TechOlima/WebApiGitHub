@@ -26,6 +26,33 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProductGet'
+    post:
+      tags:
+        - Products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductPost'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ProductPost'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ProductPost'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductGet'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductGet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductGet'
 components:
   schemas:
     GenderType:
